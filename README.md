@@ -27,7 +27,7 @@ Rastro is a Python web-monitoring dashboard that tracks changes in public HTML p
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/rastro.git
+git clone https://github.com/Taunt-byte/Rastro-web-change-intelligence.git
 cd rastro
 ```
 
