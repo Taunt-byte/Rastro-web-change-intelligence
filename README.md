@@ -1,35 +1,100 @@
-# Sistema de Login em Python
+# Rastro — Web Change Intelligence
 
-Este é um sistema de login básico desenvolvido em Python usando a biblioteca Tkinter para criar uma interface gráfica.
+Rastro is a Python web-monitoring dashboard that tracks changes in public HTML pages. It stores page snapshots, compares new content with previous versions, and records detected additions and removals.
 
-O sistema de login simula a autenticação de usuários com base em um banco de dados simulado, que armazena pares de nome de usuário e senha.
+## Features
 
-## Funcionalidades
+- Register and manage multiple pages.
+- Fetch and extract readable text from HTML pages.
+- Store historical snapshots in SQLite.
+- Detect content changes between consecutive checks.
+- Review added and removed line counts.
+- Explore recent activity with a dashboard and charts.
+- Compare the previous and current page text.
 
-- Os usuários podem digitar seu nome de usuário e senha em campos de entrada.
-- O sistema verifica se o nome de usuário existe no banco de dados e se a senha corresponde ao nome de usuário fornecido.
-- Se as credenciais forem válidas, uma mensagem de "Login bem-sucedido!" é exibida.
-- Se as credenciais forem inválidas, uma mensagem de "Credenciais inválidas." é exibida.
+## Tech Stack
 
-## Requisitos
+- Python
+- Streamlit
+- Requests
+- BeautifulSoup
+- SQLite
+- Pandas
+- Plotly
 
-- Python 3.x
+## Getting Started
 
-## Como executar o programa
+### 1. Clone the repository
 
-- Certifique-se de ter o Python 3.x instalado em seu sistema.
-- Baixe o código-fonte do sistema de login.
-- Abra um terminal ou prompt de comando e navegue até o diretório onde o código-fonte está localizado.
-- Execute o seguinte comando para iniciar o programa:
-```Bash
-python login_system.py
+```bash
+git clone https://github.com/YOUR_USERNAME/rastro.git
+cd rastro
 ```
-- A interface gráfica será aberta.
-- Digite o nome de usuário e a senha nos campos apropriados.
-- Clique no botão "Login".
-- O sistema verificará as credenciais e exibirá uma mensagem de sucesso ou falha.
 
-## Observações
+### 2. Create a virtual environment
 
-- Este sistema de login é apenas uma implementação básica e não aborda questões avançadas de segurança.
-- Ao implementar um sistema de login real, é importante considerar medidas de segurança adicionais, como armazenamento seguro de senhas, proteção contra ataques de força bruta e outras vulnerabilidades.
+**Windows**
+```bash
+py -m venv .venv
+.venv\Scripts\activate
+```
+
+**Linux / macOS**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the application
+
+```bash
+streamlit run app.py
+```
+
+The dashboard will open in your browser. The SQLite database (`rastro.db`) is created automatically.
+
+## How It Works
+
+1. Add a public HTTP or HTTPS page.
+2. Run a check to fetch its HTML.
+3. Rastro extracts readable text and saves a snapshot.
+4. On subsequent checks, it compares the new text with the latest snapshot.
+5. If differences are found, it records the event in the change history.
+
+## Project Structure
+
+```text
+rastro/
+├── app.py
+├── database.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+## Current Limitations
+
+- Checks are manually triggered in this MVP.
+- Pages that render their content exclusively with JavaScript may not be captured.
+- The comparison focuses on extracted text, not visual layout or source-code changes.
+- This tool is intended for responsible monitoring of public pages. Always respect website terms, access policies, and rate limits.
+
+## Roadmap
+
+- [ ] Scheduled checks
+- [ ] Email notifications
+- [ ] Export change reports to PDF
+- [ ] More robust content normalization
+- [ ] Per-site check intervals
+- [ ] Automated tests
+- [ ] Docker deployment
+
+## License
+
+MIT
